@@ -1,0 +1,613 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   TRAVEL CHECK PARAGUAY - DESIGN SYSTEM TOKENS
+   Corporate, clean, minimalist identity (Paraguay: Blue, Red, White)
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  /* Surface Tokens (Light Mode - Default) */
+  --surface-page: #EEF2F6;
+  --surface-card: #FFFFFF;
+  --surface-card-hover: #F8FAFC;
+  --surface-subtle: #E2E8F0;
+  --border: #CBD5E1;
+  --border-strong: #94A3B8;
+
+  /* Brand Colors */
+  --brand-blue: #0038A8;
+  --brand-blue-hover: #002D87;
+
+  --brand-red: #D52B1E;
+  --brand-red-hover: #B82318;
+
+  --brand-white: #FFFFFF;
+
+  /* Text Tokens */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+
+  /* Functional WhatsApp Color (Exclusively for WhatsApp) */
+  --whatsapp-green: #25D366;
+  --whatsapp-green-hover: #20BA5A;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Nav Scrolled Background (Translucent frosted blur) */
+  --nav-bg-scrolled: rgba(238, 242, 246, 0.82);
+}
+
+[data-theme="dark"],
+.dark {
+  /* Surface Tokens (Dark Mode) */
+  --surface-page: #070C18;
+  --surface-card: #111A2E;
+  --surface-card-hover: #16223B;
+  --surface-subtle: #18233C;
+  --border: #233352;
+  --border-strong: #364B73;
+
+  /* Adjusted Brand Colors for AA Contrast on Dark */
+  --brand-blue: #4C7FD9;
+  --brand-blue-hover: #6393E8;
+
+  --brand-red: #E8564A;
+  --brand-red-hover: #F07166;
+
+  --brand-white: #FFFFFF;
+
+  /* Text Tokens */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  /* Functional WhatsApp */
+  --whatsapp-green: #25D366;
+  --whatsapp-green-hover: #20BA5A;
+
+  /* Nav Scrolled Background (Translucent frosted blur) */
+  --nav-bg-scrolled: rgba(7, 12, 24, 0.82);
+}
+
+/* Reset & Strict Zero Radius */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface-page);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+/* Containers */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Theme Helper Classes */
+.bg-page {
+  background-color: var(--surface-page);
+}
+
+.bg-card {
+  background-color: var(--surface-card);
+}
+
+.bg-subtle {
+  background-color: var(--surface-subtle);
+}
+
+.bg-brand-blue {
+  background-color: var(--brand-blue) !important;
+}
+
+.bg-brand-red {
+  background-color: var(--brand-red) !important;
+}
+
+.bg-whatsapp {
+  background-color: var(--whatsapp-green) !important;
+}
+
+.text-white {
+  color: #FFFFFF !important;
+}
+
+.text-primary,
+.text-text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary,
+.text-text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted,
+.text-text-muted {
+  color: var(--text-muted);
+}
+
+.text-brand-blue {
+  color: var(--brand-blue);
+}
+
+.text-brand-red {
+  color: var(--brand-red);
+}
+
+.border-border {
+  border-color: var(--border);
+}
+
+.border-strong {
+  border-color: var(--border-strong);
+}
+
+.border-brand-blue {
+  border-color: var(--brand-blue);
+}
+
+.border-brand-red {
+  border-color: var(--brand-red);
+}
+
+/* Global Focus System - High contrast accessibility without camouflaging */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* Clean Flat Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 0;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-1.5px);
+}
+
+.btn:active {
+  transform: translateY(0.5px);
+}
+
+/* Primary decision CTA - Brand Red */
+.btn-primary {
+  background: var(--brand-red);
+  color: #FFFFFF;
+  border-color: var(--brand-red);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-primary:active {
+  background: var(--brand-red-hover);
+  border-color: var(--brand-red-hover);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px -2px rgba(213, 43, 30, 0.35);
+}
+.btn-primary:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+}
+
+/* Secondary outline - Brand Blue (Solid card bg in light mode, fills blue on hover/focus) */
+.btn-secondary {
+  background: var(--surface-card);
+  color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:focus-visible,
+.btn-secondary:active {
+  background: var(--brand-blue);
+  color: #FFFFFF;
+  border-color: var(--brand-blue);
+  box-shadow: 0 4px 14px -2px rgba(0, 56, 168, 0.25);
+}
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* WhatsApp CTA - Exclusive Green */
+.btn-whatsapp {
+  background: var(--whatsapp-green);
+  color: #FFFFFF;
+  border-color: var(--whatsapp-green);
+}
+.btn-whatsapp:hover,
+.btn-whatsapp:focus,
+.btn-whatsapp:focus-visible,
+.btn-whatsapp:active {
+  background: var(--whatsapp-green-hover);
+  border-color: var(--whatsapp-green-hover);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px -2px rgba(37, 211, 102, 0.35);
+}
+.btn-whatsapp:focus-visible {
+  outline: 2px solid var(--whatsapp-green);
+  outline-offset: 2px;
+}
+
+/* Neutral Outline Button */
+.btn-outline-neutral {
+  background: var(--surface-card);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-outline-neutral:hover,
+.btn-outline-neutral:focus,
+.btn-outline-neutral:focus-visible,
+.btn-outline-neutral:active {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  background: var(--surface-card-hover);
+}
+.btn-outline-neutral:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.75rem;
+  box-shadow: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  background-color: var(--surface-card-hover);
+  border-color: var(--brand-blue);
+}
+
+/* Section Pretitle / Eyebrow Label */
+.eyebrow-label {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--brand-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid var(--brand-red);
+  padding-bottom: 4px;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* Badges */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  background-color: var(--surface-subtle);
+  color: var(--text-secondary);
+}
+
+.badge-featured {
+  background-color: var(--brand-red);
+  color: #FFFFFF;
+  border-color: var(--brand-red);
+}
+
+/* Plazo de Ahorro / Installments Simulator Styles */
+.installments-total {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 28px 0;
+  display: flex;
+  align-items: center;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px !important;
+}
+
+.slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--brand-blue);
+  border-radius: 2px !important;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 3px solid var(--brand-blue);
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 4px rgba(0, 56, 168, 0.08);
+  cursor: pointer;
+  pointer-events: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+[data-theme="dark"] .slider-thumb,
+.dark .slider-thumb {
+  background: var(--surface-card);
+  box-shadow: 0 0 0 4px rgba(76, 127, 217, 0.18);
+}
+
+.slider-container:hover .slider-thumb,
+.slider-native:focus-visible ~ .slider-track .slider-thumb {
+  box-shadow: 0 0 0 6px rgba(0, 56, 168, 0.16);
+}
+
+[data-theme="dark"] .slider-container:hover .slider-thumb,
+.dark .slider-container:hover .slider-thumb,
+[data-theme="dark"] .slider-native:focus-visible ~ .slider-track .slider-thumb,
+.dark .slider-native:focus-visible ~ .slider-track .slider-thumb {
+  box-shadow: 0 0 0 6px rgba(76, 127, 217, 0.28);
+}
+
+.slider-native {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+.slider-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.slider-label.recommended {
+  color: var(--brand-blue);
+  font-weight: 500;
+}
+
+.slider-label .qualifier {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--surface-page);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-blue);
+}
+
+/* ==========================================================================
+   Logo Contrast Optimization
+   Light mode: Crisp, clean, no drop-shadow
+   Dark mode: Subtle glow/shadow to ensure blue text readability
+   ========================================================================== */
+.header-logo,
+.brand-logo {
+  filter: none;
+  transition: filter 0.25s ease;
+}
+
+[data-theme="dark"] .header-logo,
+.dark .header-logo,
+[data-theme="dark"] .brand-logo,
+.dark .brand-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* ==========================================================================
+   Header Frosted Glass Navigation (on scroll)
+   No border-bottom, content blurs softly behind while remaining discernible
+   ========================================================================== */
+.header-glass {
+  background-color: var(--surface-page);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.25s ease, backdrop-filter 0.25s ease, -webkit-backdrop-filter 0.25s ease, padding 0.2s ease;
+}
+
+.header-glass.scrolled {
+  background-color: var(--nav-bg-scrolled);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   Scroll Reveal System (Entrance and Exit Animations)
+   Elements animate in when entering viewport, and gracefully animate out when exiting
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-scale {
+  transform: translateY(16px) scale(0.97);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger Delays for Grid Children */
+.reveal.delay-75  { transition-delay: 75ms; }
+.reveal.delay-100 { transition-delay: 100ms; }
+.reveal.delay-150 { transition-delay: 150ms; }
+.reveal.delay-200 { transition-delay: 200ms; }
+.reveal.delay-250 { transition-delay: 250ms; }
+.reveal.delay-300 { transition-delay: 300ms; }
+.reveal.delay-350 { transition-delay: 350ms; }
+.reveal.delay-400 { transition-delay: 400ms; }
+
+/* ==========================================================================
+   Subtle Card Hover Elevation & Lighting Transitions
+   ========================================================================== */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand-blue);
+  box-shadow: 0 10px 25px -5px rgba(0, 56, 168, 0.08);
+}
+
+[data-theme="dark"] .hover-lift:hover,
+.dark .hover-lift:hover {
+  border-color: var(--brand-blue);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
+}
+
+/* Subtle image scale inside card on group hover */
+.img-subtle-zoom {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-subtle-zoom {
+  transform: scale(1.04);
+}
+
+/* Tab Transition Animation */
+@keyframes tabFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-tab-fade {
+  animation: tabFadeSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+/* Reduced Motion Override for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hover-lift:hover,
+  .btn:hover {
+    transform: none !important;
+  }
+}
+
+
