@@ -54,7 +54,7 @@ export default function PackageCatalog() {
       isFeatured: false,
       gsPrice: 8600000,
       usdPrice: 1160,
-      image: 'https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1529437971227-3344caa48ce2?q=80&w=800&auto=format&fit=crop',
       features: [
         'Vuelo con conexión óptima hacia Valencia o Alicante',
         'Equipaje completo en bodega incluido',

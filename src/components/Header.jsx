@@ -3,13 +3,13 @@ import { Menu, X } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import ThemeSwitch from './ThemeSwitch';
 
-export default function Header() {
+export default function Header({ isSplashComplete = true }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sectionIds = ['simulador', 'roadmap', 'paquetes', 'testimonios', 'faq'];
+    const sectionIds = ['simulador', 'roadmap', 'paquetes', 'faq'];
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -52,7 +52,6 @@ export default function Header() {
     { name: 'Simulador de Cuotas', href: '#simulador' },
     { name: 'Ruta Migratoria', href: '#roadmap' },
     { name: 'Paquetes Migratorios', href: '#paquetes' },
-    { name: 'Testimonios', href: '#testimonios' },
     { name: 'FAQ', href: '#faq' }
   ];
 
@@ -68,9 +67,12 @@ export default function Header() {
           {/* Logo */}
           <a href="#" className="flex items-center text-decoration-none group">
             <img 
+              id="header-logo"
               src="/logo.svg" 
               alt="Travel Check Paraguay" 
-              className="header-logo h-[52px] w-auto object-contain transition-transform duration-200 group-hover:scale-102"
+              className={`header-logo h-[52px] w-auto object-contain transition-all duration-200 group-hover:scale-102 ${
+                isSplashComplete ? 'opacity-100' : 'opacity-0'
+              }`}
             />
           </a>
 
