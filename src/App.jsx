@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowUpRight, WhatsAppIcon, ContentIcon, FlightIcon } from './components/Icons';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import DestinationsSection from './components/DestinationsSection';
+import ExperiencesSection from './components/ExperiencesSection';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
 import TravelCheckBanner from './components/TravelCheckBanner';
@@ -36,10 +38,12 @@ export default function App() {
     <Header />
     <main id="contenido"><section id="inicio" className="tc-hero"><div className="container tc-hero-grid"><div className="tc-copy"><p className="tc-eyebrow">{copy[0][0]}</p><h1>Tu próximo destino <span className="text-brand-blue">empieza</span> <span className="text-brand-red">acá.</span></h1><Blocks section={0} start={2} /></div><aside className="tc-route reveal" aria-label="Destinos y servicios"><span className="tc-route-top">PARAGUAY → EL MUNDO</span><div className="tc-route-orbit" aria-hidden="true"><FlightIcon /></div><p className="tc-route-title">Conectamos personas con destinos y oportunidades.</p><div className="tc-route-links"><a href="#espana"><ContentIcon text="España" />Viajes a España <ArrowUpRight /></a><a href="#polonia"><ContentIcon text="Polonia" />Oportunidades laborales en Polonia <ArrowUpRight /></a><a href="#destinos"><ContentIcon text="internacional" />Paquetes internacionales <ArrowUpRight /></a></div></aside></div></section>
     <Section index={1} /><Section index={2} />
-    <Section index={3}><Blocks section={3} start={2} end={4} /><h3>{copy[3][4]}</h3><Cards section={3} start={5} count={6} numbered /><Blocks section={3} start={17} end={21} /><div className="tc-notice"><Block text={copy[3][21]} /></div></Section>
+    <Section index={3}><Blocks section={3} start={2} end={4} /><h3>{copy[3][4]}</h3><Cards section={3} start={5} count={5} numbered /><Blocks section={3} start={15} end={19} /><div className="tc-notice"><Block text={copy[3][19]} /></div></Section>
     <Section index={4}><Blocks section={4} start={2} end={4} /><Cards section={4} start={4} count={3} /><Blocks section={4} start={10} /></Section>
     <Section index={5}><Blocks section={5} start={2} end={4} /><Cards section={5} start={4} count={3} /><TravelCheckBanner text={copy[5][10]} /></Section>
-    <Section index={6} /><Section index={7} /><Section index={8}><Cards section={8} start={2} count={6} /></Section>
+    <DestinationsSection />
+    <ExperiencesSection />
+    <Section index={8}><Cards section={8} start={2} count={6} /></Section>
     <FAQSection />
     <ContactSection /></main>
     <Footer />
