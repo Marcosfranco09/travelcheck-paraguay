@@ -1,0 +1,40 @@
+name: Deploy to Hostinger (Production)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to Hostinger
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 🔨 Compilar proyecto (Vite build)
+        run: npm run build
+
+      - name: 📄 Asegurar .htaccess en dist
+        run: cp public/.htaccess dist/.htaccess || true
+
+      - name: 🚀 Subir a Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USER }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./public_html/
