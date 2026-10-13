@@ -1,8 +1,14 @@
-import React from 'react';
-import { MapPin, Mail, Instagram, Facebook, ShieldCheck } from 'lucide-react';
-import WhatsAppIcon from './WhatsAppIcon';
+import React, { useState } from 'react';
+import TermsDialog from './TermsDialog';
+import MapPin from '@mui/icons-material/LocationOnOutlined';
+import Mail from '@mui/icons-material/MailOutlined';
+import Instagram from '@mui/icons-material/Instagram';
+import Facebook from '@mui/icons-material/Facebook';
+import ShieldCheck from '@mui/icons-material/VerifiedUserOutlined';
+import { WhatsAppIcon } from './Icons';
 
 export default function Footer() {
+  const [termsOpen, setTermsOpen] = useState(false);
   return (
     <footer className="bg-card border-t border-border pt-14 pb-10 relative">
       <div className="container">
@@ -70,10 +76,20 @@ export default function Footer() {
                 <ShieldCheck className="w-4 h-4 text-muted flex-shrink-0" />
                 <span>Razón Social: Travel Check Paraguay EAS</span>
               </li>
+              <li className="flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-muted flex-shrink-0" />
+                <span>RUC: <strong className="text-primary font-mono">80174953-0</strong></span>
+              </li>
             </ul>
 
-            <div className="p-3 bg-subtle border border-border text-[11px] text-muted inline-block">
-              Responsable de atención: <strong className="text-primary">Aida González</strong>
+            <div className="pt-1">
+              <button 
+                type="button" 
+                onClick={() => setTermsOpen(true)} 
+                className="text-xs text-brand-blue hover:text-brand-red transition-colors underline underline-offset-4 cursor-pointer inline-flex items-center gap-1.5"
+              >
+                <span>Ver Términos y Condiciones Generales →</span>
+              </button>
             </div>
           </div>
 
@@ -86,6 +102,7 @@ export default function Footer() {
         </div>
 
       </div>
+      <TermsDialog open={termsOpen} onClose={() => setTermsOpen(false)} />
     </footer>
   );
 }
